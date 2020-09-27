@@ -1,10 +1,17 @@
-export interface wander_queue{
-    queue: any[];
-    taken?: Date|undefined;
-    libarate?: Date|undefined;
+export interface wonder_value{
+    _id: string;
+    message: any;
+    taken?: string|undefined;
+    libarate?: string|undefined;
 }
 
 export interface wander_db{
     db: string;
-    queues: {[id:string]:wander_queue};
+    queues: {[id:string]:wonder_value[]};
+}
+
+export interface subscribe_outcome{
+    successed: boolean;
+    message: string;
+    subscription?: string;
 }
