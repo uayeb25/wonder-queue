@@ -142,12 +142,13 @@ class WonderQueue{
         });
     }
 
-    public getMessage(subscription: subscribe_outcome, queuename?: string): wonder_value{
+    public getMessage(subscription: subscribe_outcome, queuename?: string): wonder_value|undefined{
         const name: string = queuename? queuename: this.defaultqueue;
         const db:wander_db = this.collection.findOne({db: process.env.DB_NAME});
         if( db.queues[name] ){
             const queue:wonder_value[] = db.queues[name];
-            return queue.filter(_q => _q.taken === subscription.subscription)[0];
+            const queue_filterd:wonder_value[] = queue.filter(_q => _q.taken === subscription.subscription);
+            return queue_filterd.length > 0 ? queue_filterd[0] : undefined;
         }else{
             const error:wonder_value = {
                 _id: "Queue sent doesn't exist",
