@@ -40,3 +40,9 @@ $ npm run tsc
 # unit tests
 $ npm run test:unit
 ```
+
+## what steps would you need to take in order to scale this system to make it production-ready for very high volume?
+
+For very high volume with have to change the architecture. This project is a good quiz to evaluate queue storage management and implementation. Basically, this type of initiatives has many pieces to make interactions with the queue. For example usually is an API who writes in our queues but are serverless the workers. What does exactly means? Once API has sent batch of messages is a second plan is executed our workers. But, what happened if we want send a really high volume in our payload endpoint? We have to wait the response of our endpoint once writing process has completed too? The answer of it is NOT. We send the complete batch in a blob storage account and wen can have a serverless working only for writing processes.
+
+<img src="proposal.png" />
